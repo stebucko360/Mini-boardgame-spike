@@ -16,7 +16,7 @@ const defaultBoardArray = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
-export const GameBoard = () => {
+export const GameBoard = ({ setScore }) => {
   const [gameBoardArray, setGameBoardArray] = useState([
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -38,6 +38,9 @@ export const GameBoard = () => {
     setGameBoardArray((currentArray) => {
       if (foodLocation.toString() === playerLocation.toString()) {
         setFoodLocation(foodLocationSet());
+        setScore((currentValue) => {
+          return (currentValue += 1);
+        });
       }
       const newArray = JSON.parse(JSON.stringify(defaultBoardArray));
       newArray[playerLocation[0]][playerLocation[1]] = 2;
