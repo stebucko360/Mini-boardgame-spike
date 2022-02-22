@@ -1,7 +1,9 @@
 .gameBoard {
+  margin-left: auto;
+  margin-right: auto;
   display: grid;
-  grid-template-columns: 10px repeat(4, 50px) 10px;
-  grid-template-rows: 10px repeat(5, 50px) 10px;
+  grid-template-columns: 10px repeat(14, 50px) 10px;
+  grid-template-rows: 10px repeat(9, 50px) 10px;
 }
 
 .borderPiece {
@@ -15,4 +17,8 @@
 
 .playerLocation {
   background-color: greenyellow;
+}
+
+.food {
+  background-color: red;
 }
