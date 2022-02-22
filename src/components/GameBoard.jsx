@@ -16,7 +16,7 @@ const defaultBoardArray = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
 
-export const GameBoard = ({ setScore }) => {
+export const GameBoard = ({ setScore, score }) => {
   const [gameBoardArray, setGameBoardArray] = useState([
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
@@ -33,6 +33,7 @@ export const GameBoard = ({ setScore }) => {
 
   const [playerLocation, setPlayerLocation] = useState([5, 1]);
   const [foodLocation, setFoodLocation] = useState([5, 7]);
+  const [tail, setTail] = useState([]);
 
   useEffect(() => {
     setGameBoardArray((currentArray) => {
@@ -45,6 +46,13 @@ export const GameBoard = ({ setScore }) => {
       const newArray = JSON.parse(JSON.stringify(defaultBoardArray));
       newArray[playerLocation[0]][playerLocation[1]] = 2;
       newArray[foodLocation[0]][foodLocation[1]] = 3;
+
+      if (score > 0) {
+        const tailLocation = tail.slice(-score);
+        for (let singleTailPiece of tailLocation) {
+          newArray[singleTailPiece[0]][singleTailPiece[1]] = 2;
+        }
+      }
       return newArray;
     });
   }, [playerLocation]);
@@ -53,7 +61,9 @@ export const GameBoard = ({ setScore }) => {
     <div
       role="button"
       tabIndex="0"
-      onKeyDown={(event) => handleUserInput(event, setPlayerLocation)}
+      onKeyDown={(event) =>
+        handleUserInput(event, setPlayerLocation, setTail, tail)
+      }
     >
       <div className="gameBoard">
         {gameBoardArray.map((array) => {

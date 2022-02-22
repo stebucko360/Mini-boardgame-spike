@@ -1,3 +1,8 @@
+.App {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .gameBoard {
   margin-left: auto;
   margin-right: auto;
@@ -7,12 +12,11 @@
 }
 
 .borderPiece {
-  background-color: black;
-  border: 2px black solid;
+  background-color: rgb(0, 247, 255);
 }
 
 .mainPiece {
-  border: 1px black solid;
+  /* border: 1px black solid; */
 }
 
 .playerLocation {
